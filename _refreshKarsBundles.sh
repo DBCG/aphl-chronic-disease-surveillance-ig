@@ -80,6 +80,18 @@ cp input/vocabulary/valueSet/external/valueset-2.16.840.1.114222.4.11.3591.json 
 sh bundlegen/_bundle.sh "kars-transaction"
 sh bundlegen/_bundle.sh "kars-collection"
 
+#9.5)
+# Directory to be created
+DIR="./bundles/kars"
+
+# Check if directory exists
+if [ ! -d "$DIR" ]; then
+  echo "Directory does not exist. Creating directory: $DIR"
+  mkdir -p "$DIR"
+else
+  echo "Directory already exists: $DIR"
+fi
+
 #10) Copy the resulting output file and rename it `kars-transaction-bundle`
 rm bundles/kars-transaction-bundle.json
 cp bundlegen/kars-transaction-bundle.json bundles/kars/kars-transaction-bundle.json

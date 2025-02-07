@@ -1,6 +1,6 @@
 #!/bin/bash
 #DO NOT EDIT WITH WINDOWS
-tooling_jar=tooling-cli-2.4.0.jar
+tooling_jar=tooling-cli-3.6.0.jar
 input_cache_path=./input-cache
 resources_path=$PWD/input/resources
 ig_resource_path=./input/chronicdiseasesurveillance.xml
@@ -22,12 +22,14 @@ echo "$fsoption"
 
 tooling=$input_cache_path/$tooling_jar
 if test -f "$tooling"; then
-	JAVA -jar $tooling -RefreshIG -root-dir="$PWD" -ip="$ig_resource_path" -t -d -p $fsoption
+	# JAVA -jar $tooling -RefreshIG -root-dir="$PWD" -ip="$ig_resource_path" -t -d -p $fsoption
+    JAVA -jar $tooling -RefreshIG -root-dir="$PWD" -ip="$ig_resource_path" -t -d $fsoption
 else
 	tooling=../$tooling_jar
 	echo $tooling
 	if test -f "$tooling"; then
-		JAVA -jar $tooling -RefreshIG -root-dir="$PWD" -ip="$ig_resource_path" -t -d -p $fsoption
+		# JAVA -jar $tooling -RefreshIG -root-dir="$PWD" -ip="$ig_resource_path" -t -d -p $fsoption
+        JAVA -jar $tooling -RefreshIG -root-dir="$PWD" -ip="$ig_resource_path" -t -d $fsoption
 	else
 		echo IG Refresh NOT FOUND in input-cache or parent folder.  Please run _updateCQFTooling.  Aborting...
 	fi
